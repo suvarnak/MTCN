@@ -64,7 +64,7 @@ def evaluate_model():
     checkpoint = torch.load(args.checkpoint)
     print("model epoch {} best prec@1: {}".format(checkpoint['epoch'], checkpoint['best_prec1']))
 
-    net.load_state_dict(checkpoint['state_dict'])
+    net.load_state_dict(checkpoint['state_dict'], strict=False)
 
     dataset = _DATASETS[args.dataset.split('-')[0]]
     test_loader = torch.utils.data.DataLoader(
